@@ -76,7 +76,7 @@ jobs:
         with:
            project_id: 'rising-oven-450123-g2' # update with your project ID
            workload_identity_provider: 'projects/765295412993/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
-#xx#311 ##3151515
+#xx#311 ##3
       
       # configure/login with docker
       - name: gcloud Configure Docker
@@ -96,4 +96,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: us-central1-docker.pkg.dev/rising-oven-450123-g2/cs1660/fastapi-repo
+          tags: us-central1-docker.pkg.dev/rising-oven-450123-g2/fastapi-repo
