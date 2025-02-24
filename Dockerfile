@@ -31,7 +31,7 @@ EXPOSE 8000
 CMD ["ls"]
 
 # Set entrypoint script
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
 
 
 
