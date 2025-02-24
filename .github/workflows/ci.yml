@@ -96,4 +96,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: us-central1-docker.pkg.dev/rising-oven-450123-g2/fastapi-repo
+          tags: us-central1-docker.pkg.dev/rising-oven-450123-g2/cicd-jamesperreaultdev/fastapi-repo
