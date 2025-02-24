@@ -75,8 +75,9 @@ jobs:
         name: Authenticate to GCP
         with:
            project_id: 'rising-oven-450123-g2' # update with your project ID
-           workload_identity_provider: 'projects/765295412993/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
-           service_account: 'github-actions-sa@rising-oven-450123-g2.iam.gserviceaccount.com'
+           workload_identity_provider: 'projects/765295412993/locations/global/workloadIdentityPools/providers/github-actions-provider/rising-oven-450123-g2'
+
+      
       # configure/login with docker
       - name: gcloud Configure Docker
         run: gcloud auth configure-docker us-central1-docker.pkg.dev
@@ -94,4 +95,4 @@ jobs:
           context: ./
           file: ./Dockerfile
           push: true
-          tags: us-central1-docker.pkg.dev/cc-spring2025/dansc0de/fastapi-server:v2
+          tags: us-central1-docker.pkg.dev/cicd-jamesperreaultdev/cs1660/fastapi-server:v2
