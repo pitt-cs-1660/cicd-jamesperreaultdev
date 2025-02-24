@@ -15,8 +15,6 @@ RUN poetry config virtualenvs.create false \
 
 # Copy application code and entrypoint script
 COPY . .  
-COPY entrypoint.sh /app/entrypoint.sh
-RUN chmod +x /app/entrypoint.sh
 
 # Final stage
 FROM python:3.11-buster AS app
@@ -24,19 +22,16 @@ FROM python:3.11-buster AS app
 # Set working directory
 WORKDIR /app
 
-
-
 # Copy installed dependencies and application code from builder
 COPY --from=builder /app /app
-
-# Ensure entrypoint.sh is executable
-RUN chmod +x /app/entrypoint.sh
 
 # Expose the required port
 EXPOSE 8000
 
+CMD ["ls"]
+
 # Set entrypoint script
-ENTRYPOINT ["/app/entrypoint.sh"]
+ENTRYPOINT ["entrypoint.sh"]
 
 
 
