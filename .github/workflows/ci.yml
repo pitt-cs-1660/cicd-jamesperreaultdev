@@ -76,7 +76,7 @@ jobs:
         with:
            project_id: 'rising-oven-450123-g2' # update with your project ID
            workload_identity_provider: 'projects/765295412993/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider'
-
+#xx
       
       # configure/login with docker
       - name: gcloud Configure Docker
