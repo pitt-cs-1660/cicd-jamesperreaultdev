@@ -75,7 +75,7 @@ jobs:
         name: Authenticate to GCP
         with:
            project_id: 'rising-oven-450123-g2' # update with your project ID
-           workload_identity_provider: 'projects/765295412993/locations/global/workloadIdentityPools/providers/github-actions-provider/rising-oven-450123-g2'
+           workload_identity_provider: 'projects/765295412993/locations/global/workloadIdentityPools/github-actions-pool/providers/github-actions-provider/rising-oven-450123-g2'
 
       
       # configure/login with docker
