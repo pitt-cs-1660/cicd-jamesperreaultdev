@@ -1,40 +1,23 @@
 FROM python:3.11-buster AS builder
-
-# Set working directory
 WORKDIR /app
 
-# Install Poetry and upgrade pip
+ENV POETRY_VIRTUALENVS_IN_PROJECT=true
+
 RUN pip install --upgrade pip && pip install poetry
 
-# Copy dependency files
-COPY pyproject.toml poetry.lock ./
+COPY pyproject.toml .
+COPY poetry.lock .
 
-# Configure Poetry and install dependencies
-RUN poetry config virtualenvs.create false \
-    && poetry install --no-root --no-interaction --no-ansi
+RUN poetry install --no-root --no-interaction --no-ansi
 
-# Copy application code and entrypoint script
-COPY . .  
-
-# Final stage
-FROM python:3.11-buster AS app
-
-# Set working directory
+FROM python:3.11-buster AS prod
 WORKDIR /app
 
-# Copy installed dependencies and application code from builder
-COPY --from=builder /app /app
+COPY --from=builder /app .
+ENV PATH="/app/.venv/bin:$PATH"
+COPY ./entrypoint.sh /app/entrypoint.sh
 
-# Expose the required port
 EXPOSE 8000
 
-CMD ["ls"]
 
-# Set entrypoint script
-ENTRYPOINT ["/bin/bash", "entrypoint.sh"]
-
-
-
-# Run the FastAPI application
-CMD ["uvicorn", "cc_compose.server:app", "--reload", "--host", "0.0.0.0", "--port", "8000"]
-
+CMD [ "uvicorn", "cc_compose.server:app", "--reload", "--host", "0.0.0.0", "--port", "8000" ]
